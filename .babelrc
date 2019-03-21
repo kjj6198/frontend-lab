@@ -1,0 +1,47 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "modules": false,
+        "useBuiltIns": false,
+        "targets": {
+          "browsers": [
+            "> 1%",
+            "last 2 versions",
+            "not ie <= 11",
+            "ios 9",
+            "not ie_mob 10",
+            "not and_uc <= 11.4",
+            "not bb < 10",
+            "not op_mob <= 12",
+            "not Android < 4.4"
+          ]
+        }
+      }
+    ],
+    "react",
+    "stage-0",
+    "flow"
+  ],
+  "env": {
+    "plugins": [
+      "react-hot-loader/babel",
+      "transform-react-constant-elements",
+      "transform-react-inline-elements",
+      "transform-react-remove-prop-types"
+    ]
+  },
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "@": "./app"
+        }
+      }
+    ],
+    "add-react-displayname",
+    "styled-components"
+  ]
+}
