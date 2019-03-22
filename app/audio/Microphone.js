@@ -12,6 +12,7 @@ export default class Microphone {
     });
   }
 
+  // dummy connect microphone to speaker.
   static recordMicrophone(context: AudioContext) {
     Microphone.canUseMicrophone().then((stream) => {
       const input = context.createMediaStreamSource(stream);
