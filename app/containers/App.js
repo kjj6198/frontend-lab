@@ -8,6 +8,7 @@ import { Toolbar, Typography } from '@material-ui/core';
 
 import HomePageLoadable from '@/pages/HomePage/loadable';
 import PianoRollLoadable from '@/projects/piano-roll/loadable';
+import WaveformVisualizerLoadable from '@/projects/waveform-visualizer/loadable';
 // This is whole app entry, with hot module reload.
 // react-hot-loader will automatically handle production.
 
@@ -31,6 +32,7 @@ const App = () => (
       <Switch>
         <Route exact path="/" component={HomePageLoadable} />
         <Route path="/piano-roll" component={PianoRollLoadable} />
+        <Route path="/waveform-visualizer" component={WaveformVisualizerLoadable} />
       </Switch>
     </Container>
   </BrowserRouter>
