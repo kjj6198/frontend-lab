@@ -18,6 +18,14 @@ export default class ErrorBoundary extends Component {
 
   render() {
     const { error } = this.state;
-    return error ? <div>Something Wrong QQ</div> : this.props.children;
+    return error ? (
+      <div>
+        Something Wrong QQ.
+        {' '}
+        <code>{this.state.error.message}</code>
+      </div>
+    ) : (
+      this.props.children
+    );
   }
 }
