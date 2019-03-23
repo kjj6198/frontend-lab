@@ -77,7 +77,7 @@ export default class AudioAnalyser {
     }
   }
 
-  stopProcessNode() {
+  stopProcessNode = () => {
     this.script.removeEventListener('audioprocess', this.processNode);
   }
 

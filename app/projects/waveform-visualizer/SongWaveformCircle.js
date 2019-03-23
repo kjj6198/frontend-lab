@@ -127,8 +127,6 @@ export default function SongWaveformCircle({
     },
   }, [canvas, artworkImage]);
 
-  console.log(songInfo);
-
   return (
     <div>
       { songInfo
@@ -149,7 +147,6 @@ export default function SongWaveformCircle({
         width={canvasWidth}
         height={canvasHeight}
         scale={1.5}
-        className=""
       />
     </div>
   );
