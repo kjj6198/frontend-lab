@@ -1,6 +1,6 @@
 // @flow
 import React, {
-  useEffect, useState, useRef, forwardRef,
+  useEffect, useState, useRef,
 } from 'react';
 import AudioAnalyser from '@/audio/AudioAnalyser';
 import ResponsiveCanvas from '@/components/ResponsiveCanvas';
@@ -46,8 +46,8 @@ function useWaveformCanvas({
         new AudioContext({
           sampleRate: 44100,
         }),
-        audioRef.current,
         {
+          audio: audioRef.current,
           onProcessNode: (spectrum) => {
             // TODO
             // 1. module it to resuable class
@@ -74,9 +74,11 @@ function useWaveformCanvas({
           },
         },
       );
-      analyser.processNode();
       analyser.connect();
+      return () => analyser.destory();
     }
+
+    return () => {};
   }, [canvasRef, audioRef, ...input]);
 }
 
@@ -127,7 +129,6 @@ export default function SongWaveformCircle({
 
   console.log(songInfo);
 
-
   return (
     <div>
       { songInfo
@@ -148,6 +149,7 @@ export default function SongWaveformCircle({
         width={canvasWidth}
         height={canvasHeight}
         scale={1.5}
+        className=""
       />
     </div>
   );

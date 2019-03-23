@@ -1,3 +1,4 @@
+// @flow
 // https://stackoverflow.com/questions/14789283/what-does-the-fft-data-in-the-web-audio-api-correspond-to/14789992#14789992
 // N * samplerate / fftSize
 function mapSpectrumToFrequency(n, sampleRate, fftSize) {
@@ -17,20 +18,34 @@ export function getPartialVolume(spectrum, from, to) {
 }
 
 export default class AudioAnalyser {
-  constructor(context: AudioContext, audio, options = {}) {
+  constructor(context: AudioContext, options = {
+    audio: HTMLAudioElement,
+    source: MediaStreamAudioSourceNode,
+  }) {
     this.context = context;
     this.sampleRate = context.sampleRate;
     this.analyser = context.createAnalyser();
     this.analyser.smoothingTimeConstant = 0.1;
     this.analyser.fftSize = 2048;
-    this.source = context.createMediaElementSource(audio);
+    if (options.source) {
+      this.source = context.createMediaStreamSource(options.source);
+    } else {
+      this.audio = options.audio;
+      this.source = context.createMediaElementSource(options.audio);
+    }
+
 
     this.script = context.createScriptProcessor(2048 * 2, 1, 1);
 
     this.spectrum = new Uint8Array(this.analyser.frequencyBinCount);
     this.source.connect(this.analyser);
-    this.script.addEventListener('audioprocess', this.processNode);
     this.onProcessNode = options.onProcessNode;
+
+    // we only want to start processing when audio is playing.
+    if (options.audio) {
+      this.audio.addEventListener('play', this.process);
+      this.audio.addEventListener('pause', this.stopProcessNode);
+    }
   }
 
   get totalVolume() {
@@ -49,6 +64,18 @@ export default class AudioAnalyser {
       this.onProcessNode(this.spectrum);
     }
   };
+
+  process = () => {
+    this.script.addEventListener('audioprocess', this.processNode);
+  }
+
+  destory = () => {
+    this.stopProcessNode();
+    if (this.audio) {
+      this.audio.removeEventListener('play', this.process);
+      this.audio.removeEventListener('pause', this.stopProcessNode);
+    }
+  }
 
   stopProcessNode() {
     this.script.removeEventListener('audioprocess', this.processNode);

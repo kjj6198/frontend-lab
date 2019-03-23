@@ -73,7 +73,7 @@ export default class WaveformCanvas {
     }
 
     this.points.forEach((p) => {
-      ctx.strokeStyle = '#000';
+      ctx.strokeStyle = `hsl(${180 / Math.PI * p.angle}, 100%, 50%)`;
       ctx.beginPath();
       const x2 = Math.cos(p.angle) * (p.volume * radius + radius);
       const y2 = Math.sin(p.angle) * (p.volume * radius + radius);

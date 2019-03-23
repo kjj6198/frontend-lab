@@ -1,7 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
-import AudioAnalyser from '@/audio/AudioAnalyser';
-import { CLIENT_ID } from './constants';
-import WaveformCanvas from './canvas/WaveformCanvas';
+import React from 'react';
 import SongWaveformCircle from './SongWaveformCircle';
 
 const songs = [
@@ -12,12 +9,7 @@ const songs = [
 
 export default function WaveformVisualizer() {
   return (
-    <div
-      onClick={() => {
-        // Microphone.canUseMicrophone().then((permitted) => {});
-
-      }}
-    >
+    <div>
       <SongWaveformCircle
         songURL={songs[2]}
         radius={250}
