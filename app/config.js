@@ -1,5 +1,5 @@
 export default {
-  assetPath: process.env.NODE_ENV === 'development' ? '/app' : '/',
+  assetPath: process.env.NODE_ENV === 'development' ? '/app' : './',
   projects: [
     {
       path: '/piano-roll',
