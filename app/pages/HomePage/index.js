@@ -22,7 +22,7 @@ const BackgroundImg = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url(${props => `${props.image}`});
+  background-image: url(${props => `${config.assetPath}/${props.image}`});
 `;
 
 export default function HomePage() {
@@ -47,7 +47,14 @@ export default function HomePage() {
             <BackgroundImg image={project.image} />
             <Typography variant="headline">{project.name}</Typography>
             <Typography variant="body2">{project.description}</Typography>
-            <Link to={project.path}>LAUNCH</Link>
+            <Button
+              variant="contained"
+              color="primary"
+              component={Link}
+              to={project.path}
+            >
+              Go to Project
+            </Button>
           </Grid>
         ))}
       </Grid>

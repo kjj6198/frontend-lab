@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "NODE_ENV=development webpack-dev-server --historyApiFallback --hot --config=./webpack.dev.js",
-    "build:prod": "NODE_ENV=production rm -rf build && webpack --config=./webpack.prod.js --mode=production"
+    "build:prod": "NODE_ENV=production rm -rf build && webpack --config=./webpack.prod.js && cp -R ./app/assets ./build/assets"
   },
   "dependencies": {
     "@material-ui/core": "^3.9.2",

@@ -5,12 +5,13 @@ import CanvasPiano from './services/CanvasPiano';
 import SongPlayer from './services/SongPlayer';
 import CanvasPianoRoll from './services/CanvasPianoRoll';
 import Note from './services/Note';
+import config from '@/config';
 
 export default function PianoRoll() {
   const ref = useRef();
   const roll = useRef();
   const playSong = () => {
-    const player = new SongPlayer('/app/assets/media/mario-water.mid', {
+    const player = new SongPlayer(`${config.assetPath}/assets/media/mario-water.mid`, {
       mode: 'network',
       onMidiLoaded: (player: SongPlayer) => {
         const notes = [...player.track]
