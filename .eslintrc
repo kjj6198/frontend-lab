@@ -6,6 +6,7 @@
     }
   },
   "rules": {
+    "react/require-default-props": "off",
     "react/jsx-filename-extension": "off",
     "react/destructuring-assignment": "off",
     "import/no-extraneous-dependencies": [
