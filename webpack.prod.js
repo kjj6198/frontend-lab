@@ -43,6 +43,7 @@ module.exports = config({
     sideEffects: true,
     concatenateModules: true,
     splitChunks: {
+      minChunks: 4,
       chunks: 'all',
     },
   },
