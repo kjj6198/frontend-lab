@@ -47,9 +47,9 @@ function useWaveformCanvas({
           sampleRate: 44100,
         }),
         {
-          audio: audioRef.current,
+          audio: options.source ? null : audioRef.current,
           onProcessNode: (spectrum) => {
-            // TODO
+            // [TODO]
             // 1. module it to resuable class
             // 2. can specify radius
             // 3. can setup the line width and color
@@ -66,7 +66,7 @@ function useWaveformCanvas({
               );
 
               if (options.enableRotation) {
-                rotation += 5;
+                rotation += 4;
                 waveform.rotation = rotation % 360;
               }
               requestAnimationFrame(() => waveform.draw());
