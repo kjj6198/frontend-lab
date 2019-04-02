@@ -37,7 +37,6 @@ export default class AudioAnalyser {
       this.source = context.createMediaElementSource(options.audio);
     }
 
-
     this.script = context.createScriptProcessor(2048 * 2, 1, 1);
 
     this.spectrum = new Uint8Array(this.analyser.frequencyBinCount);
@@ -74,10 +73,19 @@ export default class AudioAnalyser {
 
   destory = () => {
     this.stopProcessNode();
+    this.context.close();
+    if (this.source) {
+      this.source.disconnect();
+      this.analyser.disconnect();
+    }
     if (this.audio) {
       this.audio.removeEventListener('play', this.process);
       this.audio.removeEventListener('pause', this.stopProcessNode);
     }
+
+    this.audio = null;
+    this.source = null;
+    this.analyser = null;
   }
 
   stopProcessNode = () => {

@@ -13,6 +13,7 @@ function useSoundCloudAPI({
   setSongInfo,
 }) {
   useEffect(() => {
+    setSongInfo({ loading: true });
     const abortController = new AbortController();
     fetch(`${songURL}?client_id=${clientID}`, {
       signal: abortController.signal,
@@ -101,7 +102,7 @@ export default function SongWaveformCircle({
   const canvas = useRef(null);
 
   useEffect(() => {
-    if (songInfo) {
+    if (songInfo && !songInfo.loading) {
       const image = new Image();
       image.crossOrigin = 'anonymous';
       image.onload = () => {
@@ -109,7 +110,7 @@ export default function SongWaveformCircle({
       };
       image.src = songInfo.artwork_url.replace(/large/, 't500x500');
     }
-  }, [songInfo]);
+  }, [songInfo, songURL]);
 
   useSoundCloudAPI({
     clientID: 'Y9szWsPjYXE7XJAS5YeeakrLQx45A0BM',
@@ -125,11 +126,11 @@ export default function SongWaveformCircle({
       artworkImage,
       enableRotation: true,
     },
-  }, [canvas, artworkImage]);
+  }, [canvas, audio, artworkImage]);
 
   return (
     <div>
-      { songInfo
+      { songInfo && !songInfo.loading
         && (
         <audio
           controls
