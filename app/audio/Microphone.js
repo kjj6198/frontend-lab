@@ -19,4 +19,8 @@ export default class Microphone {
       input.connect(context.destination);
     });
   }
+
+  static fromMicrophone() {
+    return Microphone.canUseMicrophone();
+  }
 }

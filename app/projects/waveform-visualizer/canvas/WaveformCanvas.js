@@ -1,6 +1,5 @@
-import { getPartialVolume } from '@/audio/AudioAnalyser';
-
 // @flow
+import { getPartialVolume } from '@/audio/AudioAnalyser';
 
 export default class WaveformCanvas {
   constructor(
