@@ -27,6 +27,9 @@ export default class AudioAnalyser {
     this.analyser = context.createAnalyser();
     this.analyser.smoothingTimeConstant = 0.1;
     this.analyser.fftSize = 2048;
+
+    // determine source media.
+    // can be file(audio), network API(audio) or microphone.
     if (options.source) {
       this.source = context.createMediaStreamSource(options.source);
     } else {
@@ -88,6 +91,14 @@ export default class AudioAnalyser {
     this.script.connect(this.context.destination);
   }
 
+  /**
+   * map all nodes to 4 area data.
+   * very low: 0 ~ 40Hz
+   * low: 40 ~ 220Hz
+   * mid: 200 ~ 3000Hz
+   * high: > 2500Hz
+   * TODO: Maybe we can actually skip the frequency that people can not hear?
+   */
   mapNodeToFrequency() {
     // collect frequency range into array.
     const highFreq = [];
