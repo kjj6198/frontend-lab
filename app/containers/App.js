@@ -1,7 +1,9 @@
 import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { hot } from 'react-hot-loader/root';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter, Switch, Route, Link,
+} from 'react-router-dom';
 import styled from 'styled-components';
 import AppBar from '@material-ui/core/AppBar';
 import { Toolbar, Typography } from '@material-ui/core';
@@ -20,13 +22,20 @@ const Container = styled.div`
   flex-grow: 1;
 `;
 
+const StyledLink = styled(Link)`
+  color: inherit;
+  text-decoration: none;
+`;
+
 const App = () => (
   <BrowserRouter>
     <Container>
       <AppBar position="sticky">
         <Toolbar>
           <Typography variant="h6" color="inherit">
-            {'Kalan\'s Frontend Lab'}
+            <StyledLink to="/">
+              {'Kalan\'s Frontend Lab'}
+            </StyledLink>
           </Typography>
         </Toolbar>
       </AppBar>
