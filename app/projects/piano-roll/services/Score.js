@@ -5,6 +5,4 @@ export default class Score {
     this.width = width;
     this.height = height;
   }
-
-  draw() {}
 }

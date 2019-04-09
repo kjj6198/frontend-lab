@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
+// just a simple error boundary for debugging.
 export default class ErrorBoundary extends Component {
   state = {
     error: null,
-    info: null,
   };
 
   componentDidCatch(err, errInfo) {

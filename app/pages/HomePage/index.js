@@ -34,9 +34,9 @@ export default function HomePage() {
             <span>COLLECTIONS</span>
             <Typography variant="h4">前端特輯</Typography>
             <Typography variant="body1">
-              一起來探索 Web Audio 吧！這裏是 Kalan 的實驗室，因為 audio
-              很好玩，也因此有相當多的函式庫， 這裏會放一些我使用 Web Audio 製作的小作品。
-              前端有許多好玩的領域，除了 UI 以外還有很多值得探索的地方。
+              這裏是 Kalan 的前端實驗室，隨著瀏覽器的技術越來越成熟與發達，前端有許多值得探索的技術，
+              例如 AudioContext, WebGL, WebRTC 等等，都是相當有趣，而且能夠透過網頁做出許多有創造力的事情。
+              這裡會放一些我在閒暇時光所研究的技術以及專案。
             </Typography>
           </StyledPaper>
         </Grid>

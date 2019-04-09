@@ -49,7 +49,6 @@ export default class SongPlayer {
     }
 
     if (this.track.length !== 0) {
-      const now = Tone.now() + 0.5; // prevent noise sound.
       const synth = new Tone.PolySynth(5, Tone.Synth, {
         envelope: {
           attack: 0.02,
