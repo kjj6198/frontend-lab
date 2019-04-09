@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OfflinePlugin = require('offline-plugin');
+// const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 const config = require('./webpack.config');
 
@@ -22,6 +23,10 @@ const plugins = [
     inject: true,
   }),
   new webpack.optimize.ModuleConcatenationPlugin(),
+  // TODO: add prefetch support.
+  // new ScriptExtHtmlWebpackPlugin({
+  //   prefetch: ['SobelArt', 'PianoRoll', 'WaveformVisualizer'],
+  // }),
   new OfflinePlugin({
     // Plugin's runtime wasn't added to one of your bundle entries. See this https://goo.gl/YwewYp for details.
     publicPath: '/',
