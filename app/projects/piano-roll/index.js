@@ -13,8 +13,8 @@ export default function PianoRoll() {
   const playSong = () => {
     const player = new SongPlayer(`${config.assetPath}/assets/media/mario-water.mid`, {
       mode: 'network',
-      onMidiLoaded: (player: SongPlayer) => {
-        const notes = [...player.track]
+      onMidiLoaded: (p: SongPlayer) => {
+        const notes = [...p.track]
           .map(track => track.notes)
           .reduce((acc, curr) => [...acc, ...curr], [])
           .map(note => Note.createNote({
@@ -27,11 +27,11 @@ export default function PianoRoll() {
             height: 18.94,
           }));
 
-        player.track.push();
+        p.track.push();
         const pianoRoll = new CanvasPianoRoll(ref.current.getContext('2d'), notes);
         pianoRoll.play();
         pianoRoll.draw();
-        player.play();
+        p.play();
         roll.current = pianoRoll;
       },
     });

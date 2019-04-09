@@ -70,6 +70,7 @@ const sobel = (width, height, egdeThreshold) => (imageData) => {
         + (kernelY[2][2] * pixelAt(x + 1, y + 1))
       );
 
+      // eslint-disable-next-line no-bitwise,no-restricted-properties
       const magnitude = Math.sqrt(Math.pow(X, 2) + Math.pow(Y, 2)) >>> 0;
       const minmax = magnitude > egdeThreshold ? 0 : 255;
 
@@ -105,12 +106,14 @@ export default function useSobelArt({
         }
         getImageData(reader.result)
           .then(drawSobelImage)
+          // eslint-disable-next-line no-console
           .catch(console.error);
       });
       reader.readAsDataURL(imageInstance);
     } else if (typeof imageInstance === 'string') {
       getImageData(imageInstance)
         .then(drawSobelImage)
+        // eslint-disable-next-line no-console
         .catch(console.error);
     }
   }, [canvasRef, egdeThreshold, imageInstance, onFileChange]);

@@ -37,8 +37,6 @@ export default class CanvasPiano {
     return result;
   }
 
-  trigger(note: number) {}
-
   draw() {
     const { ctx } = this;
     const noteHeight = Math.floor(this.height / this.whiteNotes);
